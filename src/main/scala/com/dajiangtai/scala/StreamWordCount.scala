@@ -16,6 +16,7 @@ object StreamWordCount {
    //val textDataStream = env.socketTextStream("192.168.204.129", 7777)
    val textDataStream = env.socketTextStream(host,port)
     //逐一读取数据 打散之后进行wordCount
+    //逐一读取数据 打散之后进行wordCount
     val wordCountDataStream = textDataStream.flatMap(_.split("\\s"))
       .map((_, 1)).keyBy(0).sum(1)
     wordCountDataStream.print().setParallelism(1)
